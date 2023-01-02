@@ -37,12 +37,34 @@ Output: 0
 * -100 <= nums[i] <= 100
 ```
 
+### Approach
+![acc1](https://user-images.githubusercontent.com/37553488/210244245-2b104984-dc5f-4b64-95dd-9ba17dcda46a.jpeg)
+![acc2](https://user-images.githubusercontent.com/37553488/210244253-9861445d-f745-4b9b-9b9c-04ac2911c833.jpeg)
+
+
+
 ### Solution
 ```cpp
 class Solution {
 public:
+    // Reference: https://leetcode.com/problems/rotate-function/solutions/2945111/simple-mathematics-solution/
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
     int maxRotateFunction(vector<int>& nums) {
-        
+       int sum=0;
+       int f=0;
+       int ans;
+       for(int i=0;i<nums.size();i++){
+           f+=(i*nums[i]);
+           sum+=nums[i];
+       }
+       ans = f;
+       int n = nums.size();
+       for(int i = n - 1;i > 0; i--){
+           ans = max(ans,f+sum-(n*nums[i]));
+           f=f+sum-(n*nums[i]);
+       }
+       return ans;
     }
 };
 ```
