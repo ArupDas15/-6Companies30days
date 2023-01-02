@@ -46,10 +46,28 @@ Using 4 different numbers in the range [1,9], the smallest sum we can get is 1+2
 
 ### Solution
 ```cpp
+// Reference: https://www.youtube.com/watch?v=GUhqiRULHrA
 class Solution {
 public:
+    void fillRes(int n, int k, vector<int> r, vector<vector<int>>&res){
+	 if(n==0 or k==0){
+	 	if(n==0 and k==0 and r.size()>0) res.push_back(r);
+		return;
+	 }
+	 int pre = 0;
+	 if (r.size() > 0) pre = r[r.size()-1];
+	 for(int x = pre + 1; x < 10; x++){
+	 	if(n - x < 0)break;
+		r.push_back(x);
+		fillRes(n - x, k - 1, r, res);
+        r.pop_back();
+	 }
+    }
     vector<vector<int>> combinationSum3(int k, int n) {
-        
+	 vector<vector<int>>res;
+	 vector<int> r;
+	 fillRes(n, k, r, res);
+	 return res;
     }
 };
 ```
