@@ -49,6 +49,9 @@ Using 4 different numbers in the range [1,9], the smallest sum we can get is 1+2
 // Reference: https://www.youtube.com/watch?v=GUhqiRULHrA
 class Solution {
 public:
+    // Solution uses Backtracking approach. We try out all possible combinations.
+    // Space Complexity: O(k)
+    // Time Complexity: O(3^n) - need to confirm this.
     void fillRes(int n, int k, vector<int> r, vector<vector<int>>&res){
 	 if(n==0 or k==0){
 	 	if(n==0 and k==0 and r.size()>0) res.push_back(r);
@@ -60,7 +63,7 @@ public:
 	 	if(n - x < 0)break;
 		r.push_back(x);
 		fillRes(n - x, k - 1, r, res);
-        r.pop_back();
+        	r.pop_back();
 	 }
     }
     vector<vector<int>> combinationSum3(int k, int n) {
