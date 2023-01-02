@@ -51,7 +51,7 @@ class Solution {
 public:
     // Solution uses Backtracking approach. We try out all possible combinations.
     // Space Complexity: O(k)
-    // Time Complexity: O(3^n) - need to confirm this.
+    // Time Complexity: O(n^k) - need to confirm this.
     void fillRes(int n, int k, vector<int> r, vector<vector<int>>&res){
 	 if(n==0 or k==0){
 	 	if(n==0 and k==0 and r.size()>0) res.push_back(r);
