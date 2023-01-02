@@ -47,7 +47,26 @@ Note that only one of the two unmatched 1s is counted as a cow since the non-bul
 class Solution {
 public:
     string getHint(string secret, string guess) {
-        
+        int bulls = 0;
+        int cows = 0;
+        vector<int> Sfreq(10, 0);
+        vector<int> Gfreq(10, 0);
+        for(int i=0;i<secret.size();i++){
+            int a = secret[i]-'0';
+            int b = guess[i]-'0';
+            cout<<"a= "<<a<<", b= "<<b<<endl;
+            if(a==b)bulls++;
+            else {
+                Sfreq[a]++;
+                Gfreq[b]++;
+            }
+        }
+        for(int i=0;i<Sfreq.size();i++){
+            cows += min(Sfreq[i], Gfreq[i]);
+        }
+        string ans="";
+        ans = ans + to_string(bulls)+ "A" + to_string(cows)+ "B";
+        return ans;
     }
 };
 ```
